@@ -7,7 +7,7 @@ import traceback
 
 
 class ZhiHuSpider:
-    def __init__(self, original_url):
+    def __init__(self, original_url, path):
         self.header_data = {'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
                             'Accept-Encoding': 'gzip, deflate, sdch, br',
                             'Accept-Language': 'zh-CN,zh;q=0.8',
@@ -17,7 +17,11 @@ class ZhiHuSpider:
 
                             }
         self.original_url = original_url
-        self.path = r'D:\photo-zhihu'
+        self.path = path
+
+        images = self.get_cont()
+        clear_items = self.clear_cont(images)
+        self.download_cont(clear_items)
 
     def download_cont(self, imgs):
         """
@@ -70,10 +74,11 @@ class ZhiHuSpider:
 
 
 if __name__ == '__main__':
-    # url = "https://www.zhihu.com/question/55881947"
+    """
+    img_url: 下载图片的问题链接
+    path：下载保存的路径
+    """
+
     img_url = "https://www.zhihu.com/question/282345576/answer/789784852"
-    # url = 'http://t.icesmall.cn/book/2/335/3.html'
-    _spider = ZhiHuSpider(original_url=img_url)
-    images = _spider.get_cont()
-    clear_items = _spider.clear_cont(images)
-    _spider.download_cont(clear_items)
+    path = r'D:\zhihu_images'
+    _spider = ZhiHuSpider(original_url=img_url, path=path)
