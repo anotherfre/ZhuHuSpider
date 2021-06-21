@@ -15,3 +15,7 @@ path：下载保存的路径
 效果图：
 
 ![Image text](https://github.com/anotherfre/ZhuHuSpider/blob/master/images/demo_image2.png)
+
+
+已添加GUI界面并编成exe文件
+![Image text](https://github.com/anotherfre/ZhuHuSpider/blob/master/images/demo_GUI.png)
