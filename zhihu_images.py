@@ -19,10 +19,6 @@ class ZhiHuSpider:
         self.original_url = original_url
         self.path = path
 
-        images = self.get_cont()
-        clear_items = self.clear_cont(images)
-        self.download_cont(clear_items)
-
     def download_cont(self, imgs):
         """
         下载内容
@@ -42,9 +38,11 @@ class ZhiHuSpider:
                     with open(r"{}\\".format(self.path) + get_time + "_" + str(index) + '.' +
                               img["src"].split("?")[0].split(".")[-1], 'wb')as file:
                         file.write(r.content)
-                        print('保存照片第 ' + str(index) + ' 张成功')
+                        # print('保存照片第 ' + str(index) + ' 张成功')
             except:
                 print(traceback.format_exc())
+
+        return "success"
 
     def clear_cont(self, items):
 
@@ -80,5 +78,8 @@ if __name__ == '__main__':
     """
 
     img_url = "https://www.zhihu.com/question/282345576/answer/789784852"
-    path = r'D:\zhihu_images'
+    path = r'D:\test_pic'
     _spider = ZhiHuSpider(original_url=img_url, path=path)
+    images = _spider.get_cont()
+    clear_items = _spider.clear_cont(images)
+    _spider.download_cont(clear_items)
